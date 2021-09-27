@@ -2,50 +2,44 @@ import React, { useRef, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import GlobalStyle from './common/GlobalStyle';
+import { useDispatch } from 'react-redux';
+import { createWord } from '../redux/modules/dictionary/action';
+import { addWordFB } from '../redux/modules/dictionary/middlewares'; 
 
-const AddWord = () => {
-
-    const [words, setWords] = useState([
-        {
-            id: 0,
-            word: 'ㅎ1ㅎ1',
-            description: '히히를 변형한 단어',
-            example: '저 친구가 초콜릿을 줬어. ㅎ1ㅎ1'
-        },
-        {
-            id: 1,
-            word: 'ㅎ2ㅎ2',
-            description: '하이하이를 표현한 단어',
-            example: '야 반갑다. ㅎ2ㅎ2'
-        },
-    ]);
-    console.log(words);
-
+const AddWord = ({ setWord }) => {
 
     const history = useHistory();
+    const dispatch = useDispatch();
 
     const wordRef = useRef(null);
     const descRef = useRef(null);
     const exampleRef = useRef(null);
-    const idRef = useRef(2);
-    console.log(wordRef);
-    console.log(descRef);
-    console.log(exampleRef);
+    // const idRef = useRef(0);
+    // console.log(wordRef);
+    // console.log(descRef);
+    // console.log(exampleRef);
 
     const addDicWord = (e) => {
         e.preventDefault();
-        console.log(wordRef.current.value);
-        console.log(descRef.current.value);
-        console.log(exampleRef.current.value);
 
-        const dic = {
-            'id': idRef.current, 
-            'word':wordRef.current.value, 
-            'description':descRef.current.value, 
-            'example': exampleRef.current.value,
-        }
-        idRef.current++;
-        setWords( (words) => [...words, dic] )
+        // const dic = {
+        //     'id': idRef.current, 
+        //     'word':wordRef.current.value, 
+        //     'description':descRef.current.value, 
+        //     'example': exampleRef.current.value,
+        // }
+        // setWord( (word) => [...word, dic] );
+
+        // dispatch(createWord(dic));
+
+        dispatch(addWordFB({
+                // 'id': idRef.current, 
+                'word':wordRef.current.value, 
+                'description':descRef.current.value, 
+                'example': exampleRef.current.value,
+                'completed': false,
+            }));
+        // idRef.current++;
         history.push('/listword');
     }
     return (
