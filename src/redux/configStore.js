@@ -1,10 +1,10 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
-import addReducer from './modules/dictionary/reducer';
+import dictionary from './modules/dictionary/reducer';
 
 const middlewares = [thunk];
-const rootReducer = combineReducers({addReducer});
+const rootReducer = combineReducers({dictionary});
 const enhancer = applyMiddleware(...middlewares);
 
 

@@ -17,3 +17,33 @@
     font-weight: 900;
     font-style: bold;
 }
+
+@font-face {
+    font-family: 'NanumGothic';
+    font-display: fallback;
+
+    src: url("./NanumGothic-Regular.ttf")format('truetype');
+
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'NanumGothic';
+    font-display: fallback;
+
+    src: url("./NanumGothic-Bold.ttf")format('truetype');
+
+    font-weight: 900;
+    font-style: bold;
+}
+
+@font-face {
+    font-family: 'GowunDodum';
+    font-display: fallback;
+
+    src: url("./GowunDodum-Regular.ttf")format('truetype');
+
+    font-weight: 400;
+    font-style: normal;
+}

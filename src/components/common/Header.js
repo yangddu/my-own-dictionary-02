@@ -23,6 +23,7 @@ const Title = styled.div`
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    z-index: 1;
 `
 
 export default Header;

@@ -29,8 +29,11 @@ const GlobalStyle = createGlobalStyle`
     .input {
         border: none;
         border-bottom: 1px solid #000;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         background: transparent;
+        width: 300px;
+        font-size: 20px;
+        font-family: 'GowunDodum';
 
         &:focus {
             outline: 2px solid #ddd;

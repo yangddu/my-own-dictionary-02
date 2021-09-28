@@ -33,14 +33,15 @@ const AddWord = ({ setWord }) => {
         // dispatch(createWord(dic));
 
         dispatch(addWordFB({
-                // 'id': idRef.current, 
+                // 'id': idRef.current, 파아어베이스에서 자동id를 불러옴 
                 'word':wordRef.current.value, 
                 'description':descRef.current.value, 
                 'example': exampleRef.current.value,
                 'completed': false,
-            }));
+            }))
+            //dispatch결과값 promise/ 
+            .then(() => history.push('/listword'));
         // idRef.current++;
-        history.push('/listword');
     }
     return (
         <div>
@@ -56,14 +57,17 @@ const AddWord = ({ setWord }) => {
                 <div>
                     예시 : <input className="input" type="text" ref={exampleRef}/>
                 </div>
-                <button className="button" onClick={addDicWord}>Add</button>
+                <button className="button" onClick={(e)=> {
+                    addDicWord(e);
+                }}>Add</button>
             </Wrap>
         </div>
     )
 }
 const Wrap = styled.div`
     width: 100vw;
-    margin-top: 100px;
+    margin-top: 130px;
+    font-family: 'GowunDodum'
 `
 
 export default AddWord;

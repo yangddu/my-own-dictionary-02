@@ -15,10 +15,10 @@ export function loadWord(word_list) {
     return { type: LOAD, word_list };
 }
 
-export function updateWord(word_index) {
-    return { type: UPDATE, word_index}
+export function updateWord(word_id) {
+    return { type: UPDATE, word_id }
 }
 
-export function deleteWord(word_index) {
-    return { type: DELETE, word_index}
+export function deleteWord(word_id) {
+    return { type: DELETE, word_id}
 }

@@ -1,6 +1,6 @@
 import { db } from '../../../firebase/Firebase';
 import { doc, collection, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
-import { loadWord, createWord, updateWord } from './action';
+import { loadWord, createWord, updateWord, deleteWord } from './action';
 
 export const loadWordFB = () => {
     return async function (dispatch) {
@@ -12,7 +12,7 @@ export const loadWordFB = () => {
             // console.log(doc.data());
             word_list.push({id:doc.id, ...doc.data()});
         })
-
+        // console.log(word_list);
         dispatch(loadWord(word_list));
     }
 };
@@ -31,17 +31,20 @@ export const updateWordFB = (word_id) => {
         const docRef = doc(db, "dictionary", word_id);
         await updateDoc(docRef, { completed: true });
 
-        console.log(getState().word);
-    }
+        dispatch(updateWord(word_id));
+     }
 }
 
+
 export const deleteWordFB = (word_id) => {
-    return async function (dispatch, getState) {
-        if( !word_id ) {
+    return async function (dispatch) {
+        if( !word_id ){
             window.alert('아이디가 없네요!');
-            return
+            return;
         }
         const docRef = doc(db, "dictionary", word_id);
         await deleteDoc(docRef);
+
+        dispatch(deleteWord(word_id));
     }
 }
