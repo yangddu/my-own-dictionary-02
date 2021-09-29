@@ -9,11 +9,11 @@ import store from './redux/configStore';
 import './fonts/font.css';
 
 ReactDOM.render(
-  <Provider store={store}>
+    <Provider store={store}>
     <BrowserRouter>
     <App />
-  </BrowserRouter>
-  </Provider>,
+    </BrowserRouter>
+    </Provider>,
   document.getElementById('root')
 );
 

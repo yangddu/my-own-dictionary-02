@@ -3,15 +3,12 @@ import GlobalStyle from './common/GlobalStyle';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { db } from '../firebase/Firebase';
-import { collection, doc, getDoc, getDocs, addDoc, updateDoc, deleteDoc } from 'firebase/firestore';
 import { loadWordFB, updateWordFB, deleteWordFB } from '../redux/modules/dictionary/middlewares';
-import { deleteWord, updateWord } from '../redux/modules/dictionary/action';
-import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTimes, faHeart } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ListWord = (props) => {
-    console.log('hh');
+
     const dispatch = useDispatch();
     const my_list = useSelector((state) => state.dictionary.word);
     console.log(my_list);
@@ -19,18 +16,7 @@ const ListWord = (props) => {
     
 
     useEffect(() => {
-        // console.log(db);
-        
-
         async function addAsync() {
-        // const query = await getDocs(collection(db, 'dictionary'));
-        // // console.log(query);
-        // query.forEach((item) => {
-        //     console.log(item.data());
-        // });
-
-        // const docRef = await doc(db, "dictionary", "sybn3LZji5UJ9kWrKEfg")
-        // deleteDoc( docRef );
         }
         addAsync();
 
@@ -49,19 +35,18 @@ const ListWord = (props) => {
                             <Card completed={word.completed} key={index}>
                                 <CardButton>
                                     <div>
-                                        <button onClick={() => {
-                                        // console.log(word.id);
+                                    <Button onClick={() => {
                                         dispatch(updateWordFB(word.id))
                                         }}
-                                            ><FontAwesomeIcon icon={faCheck}/>
-                                        </button>
+                                            ><FontAwesomeIcon icon={faHeart}/>
+                                        </Button>
                                     </div>
                                     <div>
-                                        <button onClick={() => {
+                                    <Button onClick={() => {
                                             dispatch(deleteWordFB(word.id))
                                         }}>
                                             <FontAwesomeIcon icon={faTimes}/>
-                                        </button>
+                                        </Button>
                                     </div>
                                 </CardButton>
                                 <CardText>
@@ -95,9 +80,9 @@ const AddButton = styled.button`
     font-size: 40px;
     background: #000;
     color: #fff;
-    position: absolute;
+    position: fixed;
     right: 5%;
-    bottom: 10%;
+    bottom: 5%;
     transition: all 0.3s linear;
 
     &:hover {
@@ -115,11 +100,15 @@ const CardWrap = styled.div`
     display: -webkit-flex;
     flex-wrap: wrap;
     flex-direction: row;
+    margin: 2rem;
+    gap: 0.5em;
 `
 
 const Card = styled.div`
-    width: 300px;
-    height: 220px;
+    width: 400px;
+    min-height: 300px;
+    max-height: 300px;
+    overflow-y: scroll;
     border-radius: 14px;
     background-color: ${(props) => props.completed? "#000" : '#fff'};
     color: ${(props) => props.completed? '#fff' : '#000'};
@@ -128,6 +117,35 @@ const Card = styled.div`
     padding: 20px;
     text-align: left;
     position: relative;
+    flex-basis: 23.5%;
+    flex-shrink: 1;
+    flex-grow: 1;
+
+    @media screen and (max-width: 1440px) {
+        flex-basis: 33%;
+    } 
+
+    @media screen and (max-width: 1023px) {
+        flex-basis: 49%;
+    }
+
+    @media screen and (max-width: 767px) {
+        flex-basis: 100%;
+    }
+
+    @media screen and (max-width: 600px) {
+        min-height: 0px;
+        margin: 13px;
+    }
+
+    @media screen and (max-width: 489px) {
+        min-height: 0px;
+        margin: 10px;
+    }
+
+    @media screen and (max-width: 375px) {
+        min-height: 0px;
+    }
 `
 
 const CardButton = styled.div`
@@ -136,28 +154,73 @@ const CardButton = styled.div`
     right: 20px;
 `
 
+const Button = styled.button`
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: grey;
+    cursor: pointer;
+
+    &:hover {
+        color: #ffc0cb;
+    }
+`
+
 const CardText = styled.div`
     margin-top: 60px;
     font-family: 'GowunDodum';
+
+    @media screen and (max-width: 600px) {
+        margin-top: 50px;
+    }
+
+    @media screen and (max-width: 489px) {
+        margin-top: 40px;
+    }
+
+    @media screen and (max-width: 375px) {
+        margin-top: 40px;
+    }
 `
 
 const CardWord = styled.div`
-    font-size: 20px;
+    font-size: 23px;
     font-weight: bold;
+
+    ::after {
+        content: '';
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 10px 0;
+        border: 1px dashed #ddd;
+    }
+
+    @media screen and (max-width: 489px) {
+        font-size: 20px;
+    }
+
+    @media screen and (max-width: 375px) {
+        font-size: 18px;
+    }
 `
 
 const CardDesc = styled.div`
-    
+    margin-top: 30px;
+
+    @media screen and (max-width: 375px) {
+        margin-top: 10px;
+    }
 `
 
 const CardEx = styled.div`
     color: skyblue;
+    line-height: 1.2;
+    margin-top: 20px;
+    font-weight: bold;
+
+    @media screen and (max-width: 375px) {
+        margin-top: 15px;
+    }
 `
-
-// const Line = styled.div`
-//     &:after {
-
-//     }
-// `
-
 export default ListWord;

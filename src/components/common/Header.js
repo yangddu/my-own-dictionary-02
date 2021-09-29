@@ -1,11 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
+import './Header.css';
 
 const Header = () => {
+
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const updateScroll = () => {
+        setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+    }
+    useEffect(()=>{
+        window.addEventListener('scroll', updateScroll);
+    });
+
     return (
         <div>
             <HeaderWrap>
-                <Title>My Own Dictionary</Title>
+                <div className={scrollPosition < 60 ? "original_header" : "change_header"}>My Own Dictionary</div>
             </HeaderWrap>
         </div>
     )
@@ -15,15 +25,6 @@ const HeaderWrap = styled.div`
     font-family: 'StickNoBills';
 `
 
-const Title = styled.div`
-    text-align: center;
-    font-size: 40px;
-    font-weight: 900;
-    position: fixed;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 1;
-`
+
 
 export default Header;

@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
         background: #eee;
         padding:  5px 10px;
         font-size: 20px;
+        margin: 20px auto 0;
 
         &:hover {
             background: #000;
@@ -29,14 +30,22 @@ const GlobalStyle = createGlobalStyle`
     .input {
         border: none;
         border-bottom: 1px solid #000;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
         background: transparent;
-        width: 300px;
+        width: 350px;
         font-size: 20px;
         font-family: 'GowunDodum';
 
         &:focus {
             outline: 2px solid #ddd;
+        }
+
+        @media only screen and (max-width: 425px) {
+            width: 250px;
+        }
+
+        @media only screen and (max-width: 330px) {
+            width: 200px;
         }
     }
 

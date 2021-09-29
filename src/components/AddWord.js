@@ -5,6 +5,8 @@ import GlobalStyle from './common/GlobalStyle';
 import { useDispatch } from 'react-redux';
 import { createWord } from '../redux/modules/dictionary/action';
 import { addWordFB } from '../redux/modules/dictionary/middlewares'; 
+import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AddWord = ({ setWord }) => {
 
@@ -14,52 +16,45 @@ const AddWord = ({ setWord }) => {
     const wordRef = useRef(null);
     const descRef = useRef(null);
     const exampleRef = useRef(null);
-    // const idRef = useRef(0);
-    // console.log(wordRef);
-    // console.log(descRef);
-    // console.log(exampleRef);
 
     const addDicWord = (e) => {
         e.preventDefault();
 
-        // const dic = {
-        //     'id': idRef.current, 
-        //     'word':wordRef.current.value, 
-        //     'description':descRef.current.value, 
-        //     'example': exampleRef.current.value,
-        // }
-        // setWord( (word) => [...word, dic] );
-
-        // dispatch(createWord(dic));
-
         dispatch(addWordFB({
-                // 'id': idRef.current, 파아어베이스에서 자동id를 불러옴 
                 'word':wordRef.current.value, 
                 'description':descRef.current.value, 
                 'example': exampleRef.current.value,
                 'completed': false,
             }))
-            //dispatch결과값 promise/ 
-            .then(() => history.push('/listword'));
-        // idRef.current++;
-    }
+            .then(() => history.push('/listword'))
+        }
+    
     return (
         <div>
             <GlobalStyle />
             <Wrap>
-                <div>단어 추가하기!</div>
-                <div>
-                    단어 : <input className="input" type="text" ref={wordRef}/>
-                </div>
-                <div>
-                    설명 : <input className="input" type="text" ref={descRef}/>
-                </div>
-                <div>
-                    예시 : <input className="input" type="text" ref={exampleRef}/>
-                </div>
-                <button className="button" onClick={(e)=> {
-                    addDicWord(e);
-                }}>Add</button>
+                <AddTitle>나만의 단어를 추가해보세요!<br/>무엇이든 좋습니다 😊
+                </AddTitle>
+                    <AddInputBox>
+                    <div>
+                        단어 : <input className="input" type="text" ref={wordRef}/>
+                    </div>
+                    <div>
+                        의미 : <input className="input" type="text" ref={descRef}/>
+                    </div>
+                    <div>
+                        예시 : <input className="input" type="text" ref={exampleRef}/>
+                    </div>
+                    </AddInputBox>
+                    <div style={{ width: '130px', margin: 'auto'}}>
+                        <button className="button" onClick={(e)=> {
+                            history.goBack('/')
+                        }}><FontAwesomeIcon icon={faChevronLeft}/>
+                        </button>
+                        <button className="button" onClick={(e)=> {
+                            addDicWord(e);
+                        }}>Add</button>
+                    </div>
             </Wrap>
         </div>
     )
@@ -67,7 +62,21 @@ const AddWord = ({ setWord }) => {
 const Wrap = styled.div`
     width: 100vw;
     margin-top: 130px;
-    font-family: 'GowunDodum'
+    font-family: 'GowunDodum';
+
+    button {
+        margin: 10px;   
+    }
 `
+
+const AddTitle = styled.div`
+    margin-bottom: 60px;
+    text-align: center;
+`
+
+const AddInputBox = styled.div`
+    text-align: center;
+`
+
 
 export default AddWord;

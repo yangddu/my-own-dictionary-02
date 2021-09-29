@@ -2,11 +2,12 @@ import './App.css';
 import { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import LandingPage from './components/LandingPage';
-import Footer from './components/common/Footer';
 import Header from './components/common/Header';
 import AddWord from './components/AddWord';
 import ListWord from './components/ListWord';
 import NotFound from './components/NotFound';
+import Footer from './components/common/Footer';
+
 
 function App() {
 
@@ -35,7 +36,6 @@ console.log(word);
         <Route path="/listword"><ListWord word={word}/></Route>
         <Route><NotFound /></Route>
       </Switch>
-      <Footer />
     </div>
   );
 }
