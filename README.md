@@ -8,16 +8,22 @@
 [5. 배운 점](###-배운-점)<br/>
 
 
+<br/>
+<br/>
+
 
 ### 프로젝트 소개
+
 (21.09.27 ~ 21.10.04)<br/>
 리액트로 나만의 단어장 사이트를 만들었습니다. 
-<br/>
-<br/>
 
+
+<br/>
+<br/>
 
 
 ### 사용 기술
+
 **Design** 
 styled components
 
@@ -25,8 +31,10 @@ styled components
 Redux
 Firebase
 
+
 <br/>
 <br/>
+
 
 ### 폴더 구조
 
@@ -37,6 +45,7 @@ Firebase
 
 <br/>
 <br/>
+
 
 ### 기능 구현 방식
 
