@@ -12,6 +12,8 @@
 ### 프로젝트 소개
 (21.09.27 ~ 21.10.04)<br/>
 리액트로 나만의 단어장 사이트를 만들었습니다. 
+<br/>
+<br/>
 
 
 
@@ -23,7 +25,8 @@ styled components
 Redux
 Firebase
 
-
+<br/>
+<br/>
 
 ### 폴더 구조
 
@@ -32,7 +35,8 @@ Firebase
 - /redux/modules : action.js, middlewarej.js, reducer.js, types.js 별로 각각 나누어 정리
 
 
-
+<br/>
+<br/>
 
 ### 기능 구현 방식
 
